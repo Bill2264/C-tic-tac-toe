@@ -7,15 +7,13 @@ bool checkwinv(char*);
 bool checkwind(char*);
 int main()
 {
-	string play1,play2;
-
-	int a, b,i,p1wins = 0,p2wins = 0;
+	string play1;
+	srand(time(NULL));//sets rand seed based on system time,effectivally random
+	int a, b,i,p1wins = 0,Cwins = 0;
 	char grid[3][3] = {}, playagain;
 	char* p1 = &grid[0][0]; 
 	cout << "Please enter name of player one: ";//first player's name
 	cin >> play1;
-	cout << "Please enter name of player two: ";//second player's name
-	cin >> play2;
 	for( i = 1; i<=9;i++)
 	{
 		if(i==1)
@@ -46,7 +44,7 @@ int main()
 				cin >> a >> b;
 				a--;
 				b--;
-				if (grid[a][b] == ' ')
+				if (grid[a][b] == ' ')//checks if spot is empty before writing the X
 				{
 					grid[a][b] = 'X';
 					j = -1;
@@ -59,18 +57,12 @@ int main()
 			else
 			{
 				
-				cout << play2 << "'s turn, where will you place your X, enter x cord, then enter y cord (top-left is 1,1); ";
-				cin >> a >> b;
-				a--;
-				b--;
+				a = rand()%3;//genrates a random number from 0 to 2
+				b = rand()%3;
 				if (grid[a][b] == ' ')
 				{
-					grid[a][b] = '0';
+					grid[a][b] = 'O';
 					j = -1;
-				}
-				else
-				{
-					cout << "invalide location" << endl;
 				}
 			}
 		}
@@ -85,10 +77,10 @@ int main()
 			}
 			else
 			{
-				cout <<play2;
-				p2wins++;
+				cout <<"Computer";
+				Cwins++;
 			}
-			cout << " wins, wanna play again? y/n (" << play1 << "'s wins = " << p1wins << ", "<<play2<<" wins = " << p2wins << ") : ";
+			cout << " wins, wanna play again? y/n (" << play1 << "'s wins = " << p1wins << ", Computer's wins = " << Cwins << ") : ";
 			cin >> playagain;
 
 			if (playagain == 'y' || playagain == 'Y')//if i is 0, 0 is valid for loop and then i++ and loop starts again at i = 1
@@ -102,7 +94,7 @@ int main()
 		}
 		if (i == 9)//if neither player gets 3 in a row i = 9 when it reaches this part and states draw
 		{
-			cout << "Draw game, wanna play again? y/n (" << play1 << "'s wins = " << p1wins << ", " << play2 << " wins = " << p2wins << ") : ";
+			cout << "Draw game, wanna play again? y/n (" << play1 << "'s wins = " << p1wins << ", Computer's wins = " << Cwins << ") : ";
 			cin >> playagain;
 
 			if (playagain == 'y' || playagain == 'Y')
