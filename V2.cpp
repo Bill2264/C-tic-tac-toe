@@ -1,4 +1,4 @@
-//version 1, player vs player
+//version 1, player vs comupter
 #include<iostream>
 #include<stdlib.h>
 using namespace std;
